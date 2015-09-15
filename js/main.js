@@ -1,10 +1,10 @@
 var urlList = {search: ["google.com", "yahoo.com"], social: ["facebook.com", "twitter.com"], me: ["valeriemettler.com"]};
 //var urlList = {"google.com":"search", "yahoo.com":"search", "facebook.com":"social"};
 
-var bookmarks = "";
+//var bookmarks = "";
 //var allUrls =[];
 var displayAll = function () {
-
+$('#bookmarkDiv').html("");
     for (var name in urlList){
          //console.log(name); //prints tag names search and social
          //console.log(urlList[name]); //prints arrays of urls: ["google.com", "yahoo.com"], ["facebook.com"]
@@ -16,24 +16,27 @@ var displayAll = function () {
         // console.log(allUrls);
          //console.log(urlList[name][i]); //prints all urls
 
-          //old display url + tag
-          bookmarks = bookmarks + '<div class="dombookmark"><a href="http://www.'
-        + urlList[name[i]] + '" target="_blank">' + urlList[name][i] + '</a> #' + name + '</div>';
+          //*****old display url + tag
+        //   bookmarks = bookmarks + '<div class="dombookmark"><a href="http://www.'
+        // + urlList[name[i]] + '" target="_blank">' + urlList[name][i] + '</a> #' + name + '</div>';
 
 
           //sorting by tag display:
-           //var allUrls =[];
-           //allUrls.push(urlList[name][i]);
-          //console.log(urlList[name]);
-          // if
-          // bookmarks = bookmarks + '<div>' + name + '</div>' + '<div><a href="http://www.'
-          // + urlList[name] + '" target="_blank">' + urlList[name] +  '</a></div>';
+            var x = "";
+            for (var name in urlList) {
+              x = x + '<div><br><div>#' + name + '</div>';
 
-        //   bookmarks = bookmarks + '<div class="dombookmark"><a href="http://www.'
-        // + urlList[name] + '" target="_blank">' + urlList[name] + '</a> #' + name + '</div>';
-      }
-    }
-    $("#bookmarkDiv").append(bookmarks);
+              for (var i = 0; i < urlList[name].length; i++) {
+              //console.log(urlList[name].length);
+              x = x + '<li><a href="#">' + urlList[name][i] + '</a></li></div>';
+
+            }
+
+            }
+
+              }
+            }
+    $("#bookmarkDiv").html(x);
     //return allUrls;
 }
 displayAll();
@@ -48,8 +51,6 @@ var display = function () {
     if (e.keyCode == 13) {
       var url = $('#urlInput').val();
       var text = $('#tagInput').val();
-      //var tags = {};
-      //tags[text] = url;
 
 
       if (text in urlList){
@@ -58,28 +59,31 @@ var display = function () {
        urlList[text] = [url];
     }
 
-    //for (var name in urlList){
-        //for (var i = 0; i < urlList[name].length; i++);{
-          //console.log(urlList[name]); // prints arrays of urls
-          //console.log(urlList[name][i]);
-          // if (urlList[name][i].indexOf() != -1) {
-          //   console.log("hi");
-          // }
-          //console.log(typeof urlList[name]); //typeof = hash
 
-        //  urlList[name].push(url);
-      //   }
-    // console.log(urlList);
+      //old display
+      // bookmarks ='<div class="dombookmark"><a href="http://www.'
+      // + url + '" target="_blank">' + url + '</a> #' + text + '</div>';
+      // $("#bookmarkDiv").append(bookmarks);
 
-    //   if (urlList.indexOf([text]) != -1) {
-    //   urlList[text] = url;
-    // } else {
-    //   urlList[text] = urlList[text] + url;
-    // }
+       //sorting by tag display:
+            var x = "";
+            for (var name in urlList) {
+              x = x + '<div><br><div>#' + name + '</div>';
 
-      bookmarks ='<div class="dombookmark"><a href="http://www.'
-      + url + '" target="_blank">' + url + '</a> #' + text + '</div>';
-      $("#bookmarkDiv").append(bookmarks);
+              for (var i = 0; i < urlList[name].length; i++) {
+              //console.log(urlList[name].length);
+              x = x + '<li><a href="#">' + urlList[name][i] + '</a></li></div>';
+
+            }
+
+            }
+
+
+    $("#bookmarkDiv").html(x);
+    //return allUrls;
+
+
+
       $('#tagInput').val('');
     $('#urlInput').focus().val('');
      console.log(urlList);
